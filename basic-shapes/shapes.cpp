@@ -37,11 +37,22 @@ int main()
 
     glViewport(0,0,800,600);
 
+     //line values
+    GLfloat lineVertices[] = {
+        500, 100, 0,
+        300, 300, 0
+    };
+
     //for resizing window
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);  
 
     while(!glfwWindowShouldClose(window))
     {
+        //rendring line
+        glEnableClientState(GL_VERTEX_ARRAY);
+        glVertexPointer(3, GL_FLOAT, 0, lineVertices);
+        glDrawArrays(GL_LINES, 0, 2);
+        glDisableClientState(GL_VERTEX_ARRAY);
         glfwSwapBuffers(window);
         glfwPollEvents();    
     }
